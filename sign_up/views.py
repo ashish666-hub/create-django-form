@@ -8,13 +8,21 @@ def signUp(request):
         last_name = request.POST.get('last_name')
         gender = request.POST.get('gender')
         email = request.POST.get('email')
+
         password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+
         hobbies = request.POST.getlist('hobbies')
         source_of_income = request.POST.get('source_of_income')
         income = request.POST.get('income')
         profile_pic = request.FILES.get('profile_pic')
         age = request.POST.get('age')
         bio = request.POST.get('bio')
+
+        if password != confirm_password:
+            return render(request, 'sign_up/register.html',{
+                'error': "passwords do not match. Please enter the password again!"
+                })
 
         Account.objects.create(
             first_name=first_name,

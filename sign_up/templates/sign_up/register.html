@@ -9,6 +9,9 @@
     <h1>Create Account</h1>
     <form method='POST' action="" enctype="multipart/form-data">
         {% csrf_token %}
+        {% if error %}
+        <p style="color:red">{{ error }}</p>
+        {% endif %}
         <table>
             <tr>
                 <td>
@@ -35,7 +38,7 @@
                 </td>
                 <td>
                     <label for="confirm_password">Confirm Password:</label><br>
-                    <input type="password" name="confirm_password" id="confirm_password">                   
+                    <input type="password" name="confirm_password" id="confirm_password" required>                   
                 </td>
             </tr>
             
